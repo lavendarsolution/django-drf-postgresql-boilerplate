@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  django_backend:
+    build: ./backend
+    image: 'django_backend:latest'
+    container_name: django_backend
+    command: [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+    volumes:
+      - ./backend/:/usr/src/backend/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
