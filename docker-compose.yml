@@ -5,7 +5,6 @@ services:
     build: ./backend
     image: 'django_backend:latest'
     container_name: django_backend
-    command: [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
     volumes:
       - ./backend/:/usr/src/backend/
     ports:
